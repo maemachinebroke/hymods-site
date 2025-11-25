@@ -21,7 +21,6 @@ import {
   NavigationMenuItem,
 } from "./client";
 import { buttonVariants } from "../../ui/button";
-import { ViewTransition } from "react";
 
 export interface HomeLayoutProps extends BaseLayoutProps {
   nav?: Partial<
@@ -93,14 +92,12 @@ export function Header({
 
   return (
     <Navbar>
-      <ViewTransition name="navtitle">
-        <Link
-          href={nav.url ?? "/"}
-          className="inline-flex items-center gap-2.5 font-semibold"
-        >
-          {nav.title}
-        </Link>
-      </ViewTransition>
+      <Link
+        href={nav.url ?? "/"}
+        className="inline-flex items-center gap-2.5 font-semibold"
+      >
+        {nav.title}
+      </Link>
       {nav.children}
       <ul className="flex flex-row items-center gap-2 px-6 max-sm:hidden">
         {navItems
