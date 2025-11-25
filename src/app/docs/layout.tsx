@@ -7,7 +7,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <DocsBanner />
-      <DocsLayout tree={source.pageTree} {...baseOptions()}>
+      <DocsLayout
+        tree={source.pageTree}
+        {...baseOptions()}
+        githubUrl="https://github.com/HytaleModding/site"
+      >
         {children}
       </DocsLayout>
     </div>

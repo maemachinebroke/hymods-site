@@ -30,10 +30,19 @@ export function ThemeToggle({
 }: HTMLAttributes<HTMLElement> & {
   mode?: "light-dark" | "light-dark-system";
 }) {
-  const { setTheme, theme, resolvedTheme } = useTheme();
+  const { setTheme: nextThemesSetTheme, theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  const setTheme = (theme: string) => {
+    // if ()
+    window.document.startViewTransition(() => {
+      nextThemesSetTheme(theme);
+    });
+  };
+
   useLayoutEffect(() => {
+    // done to avoid hydration mismatch
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

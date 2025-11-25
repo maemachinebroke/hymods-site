@@ -44,6 +44,7 @@ import {
   getSidebarTabs,
   type GetSidebarTabsOptions,
 } from "fumadocs-ui/utils/get-sidebar-tabs";
+import { ViewTransition } from "react";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
@@ -199,12 +200,14 @@ export function DocsLayout({
       <SidebarContent {...rest}>
         <SidebarHeader>
           <div className="flex">
-            <Link
-              href={nav.url ?? "/"}
-              className="me-auto inline-flex items-center gap-2.5 text-[0.9375rem] font-medium"
-            >
-              {nav.title}
-            </Link>
+            <ViewTransition name="navtitle">
+              <Link
+                href={nav.url ?? "/"}
+                className="me-auto inline-flex items-center gap-2.5 text-[0.9375rem] font-medium"
+              >
+                {nav.title}
+              </Link>
+            </ViewTransition>
             {nav.children}
             {collapsible && (
               <SidebarCollapseTrigger

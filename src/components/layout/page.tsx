@@ -20,6 +20,7 @@ import {
   PageTOCTitle,
 } from "./docs/page";
 import type { AnchorProviderProps, TOCItemType } from "fumadocs-core/toc";
+import { ViewTransition } from "react";
 
 interface EditOnGitHubOptions
   extends Omit<ComponentProps<"a">, "href" | "children"> {
@@ -139,53 +140,55 @@ export function DocsPage({
     tocPopoverOptions.footer !== undefined;
 
   return (
-    <PageRoot
-      toc={
-        tocEnabled || tocPopoverEnabled
-          ? {
-              toc,
-              single: tocOptions.single,
-            }
-          : false
-      }
-      {...container}
-    >
-      {tocPopoverEnabled &&
-        (tocPopover ?? (
-          <PageTOCPopover>
-            <PageTOCPopoverTrigger />
-            <PageTOCPopoverContent>
-              {tocPopoverOptions.header}
-              <PageTOCPopoverItems variant={tocPopoverOptions.style} />
-              {tocPopoverOptions.footer}
-            </PageTOCPopoverContent>
-          </PageTOCPopover>
-        ))}
-      <PageArticle {...article}>
-        {breadcrumbEnabled &&
-          (breadcrumb ?? <PageBreadcrumb {...breadcrumbProps} />)}
-        {children}
-        <div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
-          {editOnGithub && (
-            <EditOnGitHub
-              href={`https://github.com/${editOnGithub.owner}/${editOnGithub.repo}/blob/${editOnGithub.sha}/${editOnGithub.path.startsWith("/") ? editOnGithub.path.slice(1) : editOnGithub.path}`}
-            />
-          )}
-          {lastUpdate && <PageLastUpdate date={new Date(lastUpdate)} />}
-        </div>
-        {footer.enabled !== false &&
-          (footer.component ?? <PageFooter items={footer.items} />)}
-      </PageArticle>
-      {tocEnabled &&
-        (tocReplace ?? (
-          <PageTOC>
-            {tocOptions.header}
-            <PageTOCTitle />
-            <PageTOCItems variant={tocOptions.style} />
-            {tocOptions.footer}
-          </PageTOC>
-        ))}
-    </PageRoot>
+    <ViewTransition>
+      <PageRoot
+        toc={
+          tocEnabled || tocPopoverEnabled
+            ? {
+                toc,
+                single: tocOptions.single,
+              }
+            : false
+        }
+        {...container}
+      >
+        {tocPopoverEnabled &&
+          (tocPopover ?? (
+            <PageTOCPopover>
+              <PageTOCPopoverTrigger />
+              <PageTOCPopoverContent>
+                {tocPopoverOptions.header}
+                <PageTOCPopoverItems variant={tocPopoverOptions.style} />
+                {tocPopoverOptions.footer}
+              </PageTOCPopoverContent>
+            </PageTOCPopover>
+          ))}
+        <PageArticle {...article}>
+          {breadcrumbEnabled &&
+            (breadcrumb ?? <PageBreadcrumb {...breadcrumbProps} />)}
+          {children}
+          <div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
+            {editOnGithub && (
+              <EditOnGitHub
+                href={`https://github.com/${editOnGithub.owner}/${editOnGithub.repo}/blob/${editOnGithub.sha}/${editOnGithub.path.startsWith("/") ? editOnGithub.path.slice(1) : editOnGithub.path}`}
+              />
+            )}
+            {lastUpdate && <PageLastUpdate date={new Date(lastUpdate)} />}
+          </div>
+          {footer.enabled !== false &&
+            (footer.component ?? <PageFooter items={footer.items} />)}
+        </PageArticle>
+        {tocEnabled &&
+          (tocReplace ?? (
+            <PageTOC>
+              {tocOptions.header}
+              <PageTOCTitle />
+              <PageTOCItems variant={tocOptions.style} />
+              {tocOptions.footer}
+            </PageTOC>
+          ))}
+      </PageRoot>
+    </ViewTransition>
   );
 }
 
@@ -238,7 +241,7 @@ export const DocsDescription = forwardRef<
     <p
       ref={ref}
       {...props}
-      className={cn("text-fd-muted-foreground mb-8 text-lg", props.className)}
+      className={cn("text-fd-muted-foreground mb-1 text-base", props.className)}
     >
       {props.children}
     </p>
@@ -253,7 +256,7 @@ export const DocsTitle = forwardRef<HTMLHeadingElement, ComponentProps<"h1">>(
       <h1
         ref={ref}
         {...props}
-        className={cn("text-[1.75em] font-semibold", props.className)}
+        className={cn("text-[1.95em] font-semibold", props.className)}
       >
         {props.children}
       </h1>
