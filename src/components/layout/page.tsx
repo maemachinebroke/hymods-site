@@ -140,7 +140,7 @@ export function DocsPage({
     tocPopoverOptions.footer !== undefined;
 
   return (
-    <ViewTransition>
+    <ViewTransition update="none">
       <PageRoot
         toc={
           tocEnabled || tocPopoverEnabled

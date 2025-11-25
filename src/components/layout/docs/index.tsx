@@ -203,7 +203,7 @@ export function DocsLayout({
             <ViewTransition name="navtitle">
               <Link
                 href={nav.url ?? "/"}
-                className="me-auto inline-flex items-center gap-2.5 text-[0.9375rem] font-medium"
+                className="me-auto inline-flex items-center gap-2.5 text-[16px] font-medium"
               >
                 {nav.title}
               </Link>

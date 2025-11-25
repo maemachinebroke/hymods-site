@@ -16,16 +16,14 @@ export default function Layout({ children }: LayoutProps<"/">) {
             enabled: false,
           }}
         >
-          <ViewTransition>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </ViewTransition>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </RootProvider>
       </body>
     </html>
