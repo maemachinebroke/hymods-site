@@ -1,17 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { branch, commit } from '@/git-info.json';
 
 export function DocsBanner() {
-  const [gitInfo, setGitInfo] = useState({ branch: 'main', commit: 'abc1234' });
-
-  useEffect(() => {
-    fetch('/git-info.json')
-      .then(res => res.json())
-      .then(data => setGitInfo(data))
-      .catch(() => console.log('Git info not available'));
-  }, []);
-
   return (
     <div className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
       <div className="max-w-screen-2xl mx-auto px-4 py-2.5">
@@ -27,9 +19,9 @@ export function DocsBanner() {
               <path d="M11.5 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1h2.293L8.146 1.354a.5.5 0 0 1 .708-.708L11 2.793V.5a.5.5 0 0 1 .5-.5z"/>
               <path d="M5 2.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 11.5 14h-9A1.5 1.5 0 0 1 1 12.5v-9A1.5 1.5 0 0 1 2.5 2h2a.5.5 0 0 1 .5.5z"/>
             </svg>
-            <span>{gitInfo.branch}</span>
+            <span>{branch}</span>
             <span className="text-slate-400 dark:text-slate-600">@</span>
-            <span>{gitInfo.commit}</span>
+            <span>{commit}</span>
           </div>
         </div>
       </div>

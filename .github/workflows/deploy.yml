@@ -28,9 +28,5 @@ jobs:
             cd /opt/website/
             git pull origin ${{ github.ref_name }}
             
-            BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-            COMMIT_HASH=$(git rev-parse --short HEAD)
-            echo "{\"branch\":\"$BRANCH_NAME\",\"commit\":\"$COMMIT_HASH\"}" > public/git-info.json
-            
             bun run build
             pm2 restart website

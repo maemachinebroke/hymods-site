@@ -1,19 +1,8 @@
-'use client';
-
 import { Users, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { branch, commit } from '@/git-info.json';
 
 export default function HomePage() {
-  const [gitInfo, setGitInfo] = useState({ branch: 'main', commit: 'abc1234' });
-
-  useEffect(() => {
-    fetch('/git-info.json')
-      .then(res => res.json())
-      .then(data => setGitInfo(data))
-      .catch(() => console.log('Git info not available'));
-  }, []);
-
   return (
     <div className="font-grotesk flex flex-col justify-center items-center min-h-[calc(100vh-4rem)] px-4 relative overflow-hidden">
       {/* Branch and Commit Info - Bottom Right */}
@@ -28,10 +17,10 @@ export default function HomePage() {
             <path d="M11.5 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1h2.293L8.146 1.354a.5.5 0 0 1 .708-.708L11 2.793V.5a.5.5 0 0 1 .5-.5z"/>
             <path d="M5 2.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 11.5 14h-9A1.5 1.5 0 0 1 1 12.5v-9A1.5 1.5 0 0 1 2.5 2h2a.5.5 0 0 1 .5.5z"/>
           </svg>
-          <span className="text-slate-700 dark:text-slate-300 font-medium">{gitInfo.branch}</span>
+          <span className="text-slate-700 dark:text-slate-300 font-medium">{branch}</span>
         </div>
         <span className="text-slate-400 dark:text-slate-500">@</span>
-        <span className="text-slate-600 dark:text-slate-400">{gitInfo.commit}</span>
+        <span className="text-slate-600 dark:text-slate-400">{commit}</span>
       </a>
 
       <div 
