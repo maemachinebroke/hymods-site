@@ -1,4 +1,4 @@
-import { Users, BookOpen } from 'lucide-react';
+import { Users, BookOpen, ExternalLinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { branch, commit } from '@/git-info.json';
 
@@ -13,10 +13,7 @@ export default function HomePage() {
         className="absolute bottom-4 right-4 z-10 flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-300 dark:border-slate-700 text-xs font-mono hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-150 cursor-pointer"
       >
         <div className="flex items-center gap-1.5">
-          <svg className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.5 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1h2.293L8.146 1.354a.5.5 0 0 1 .708-.708L11 2.793V.5a.5.5 0 0 1 .5-.5z"/>
-            <path d="M5 2.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 11.5 14h-9A1.5 1.5 0 0 1 1 12.5v-9A1.5 1.5 0 0 1 2.5 2h2a.5.5 0 0 1 .5.5z"/>
-          </svg>
+          <ExternalLinkIcon className="size-4"/>
           <span className="text-slate-700 dark:text-slate-300 font-medium">{branch}</span>
         </div>
         <span className="text-slate-400 dark:text-slate-500">@</span>

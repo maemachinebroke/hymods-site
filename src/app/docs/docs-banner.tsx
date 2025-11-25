@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { branch, commit } from '@/git-info.json';
+import { ExternalLinkIcon } from 'lucide-react';
 
 export function DocsBanner() {
   return (
@@ -15,10 +16,7 @@ export function DocsBanner() {
             <span className="font-medium">Documentation In Progress</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
-            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M11.5 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1h2.293L8.146 1.354a.5.5 0 0 1 .708-.708L11 2.793V.5a.5.5 0 0 1 .5-.5z"/>
-              <path d="M5 2.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 11.5 14h-9A1.5 1.5 0 0 1 1 12.5v-9A1.5 1.5 0 0 1 2.5 2h2a.5.5 0 0 1 .5.5z"/>
-            </svg>
+            <ExternalLinkIcon className="size-4"/>
             <span>{branch}</span>
             <span className="text-slate-400 dark:text-slate-600">@</span>
             <span>{commit}</span>
